@@ -40,7 +40,7 @@ class CartCubit extends Cubit<CartState> {
 
   //========================= get product cart =========
   emitGetProductsCartStates() async {
-    emit(AddCartLoading());
+    emit(GetCartLoading());
     log('loading');
     ApiResult<CartProductsModel> response = await cartRepo.getCartProducts();
 
@@ -51,7 +51,7 @@ class CartCubit extends Cubit<CartState> {
       },
       failure: (err) {
         log('Error: $err');
-        emit(AddCartFailure(errMsg: err));
+        emit(GetCartFailure(errMsg: err));
       },
     );
   }
