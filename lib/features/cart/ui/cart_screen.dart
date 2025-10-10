@@ -165,7 +165,7 @@ class EmptyCart extends StatelessWidget {
   }
 }
 
-// Widget to display list of cart items
+// Widget to display list of cart items'
 class CartItemsList extends StatelessWidget {
   final List<CartItemModel> cartItems;
   final void Function(String, int) onQuantityChanged;
