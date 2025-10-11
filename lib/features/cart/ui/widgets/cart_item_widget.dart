@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laza_ecommerce_app/features/cart/data/models/cart_products_model/cart_item.dart';
+import 'package:laza_ecommerce_app/features/cart/ui/widgets/add_and_minus_btns.dart';
 import 'package:laza_ecommerce_app/features/cart/ui/widgets/delete_btn.dart';
 import 'product_image_widget.dart';
 import 'product_details_widget.dart';
-import 'quantity_control_widget.dart';
 
 class CartItemWidget extends StatelessWidget {
-  final CartItemModel cartItem;
+  final CartItemModel cartItemModel;
   final Function(String, int) onQuantityChanged;
   final Function(String) onRemove;
 
   const CartItemWidget({
     super.key,
-    required this.cartItem,
+    required this.cartItemModel,
     required this.onQuantityChanged,
     required this.onRemove,
   });
@@ -21,7 +21,6 @@ class CartItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Add box shadow to the container
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
@@ -39,32 +38,32 @@ class CartItemWidget extends StatelessWidget {
       child: Row(
         children: [
           //================= img =============
-          ProductImageWidget(imageUrl: cartItem.productCoverUrl!),
+          ProductImageWidget(imageUrl: cartItemModel.productCoverUrl!),
           SizedBox(width: 12.w),
 
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //================== info ================
-              ProductDetailsWidget(cartItem: cartItem),
+              ProductDetailsWidget(cartItem: cartItemModel),
               SizedBox(height: 8.h),
 
-              //================== delete =========
+              //================== add and minus =========
               Row(
                 children: [
-                  QuantityControlWidget(
-                    quantity: cartItem.quantity!,
+                  AddAndMinusBtns(
+                    quantity: cartItemModel.quantity!,
                     onIncrement: () => onQuantityChanged(
-                      cartItem.itemId!,
-                      cartItem.quantity! + 1,
+                      cartItemModel.itemId!,
+                      cartItemModel.quantity! + 1,
                     ),
                     onDecrement: () => onQuantityChanged(
-                      cartItem.itemId!,
-                      cartItem.quantity! - 1,
+                      cartItemModel.itemId!,
+                      cartItemModel.quantity! - 1,
                     ),
                   ),
                   SizedBox(width: 50.h),
-                  DeleteButton(onTap: () => onRemove(cartItem.itemId!)),
+                  DeleteButton(onTap: () => onRemove(cartItemModel.itemId!)),
                 ],
               ),
             ],

@@ -5,12 +5,12 @@ import 'package:laza_ecommerce_app/core/themes/app_colors.dart';
 import 'package:laza_ecommerce_app/core/themes/app_styles.dart';
 import 'package:laza_ecommerce_app/features/cart/ui/widgets/quantity_button.dart';
 
-class QuantityControlWidget extends StatelessWidget {
+class AddAndMinusBtns extends StatelessWidget {
   final int quantity;
   final VoidCallback onIncrement;
   final VoidCallback onDecrement;
 
-  const QuantityControlWidget({
+  const AddAndMinusBtns({
     super.key,
     required this.quantity,
     required this.onIncrement,
