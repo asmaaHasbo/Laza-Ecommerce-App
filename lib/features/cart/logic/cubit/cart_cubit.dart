@@ -38,7 +38,6 @@ class CartCubit extends Cubit<CartState> {
   }
 
   //========================= get product cart =========
-  int counter = 1;
   emitGetProductsCartStates() async {
     emit(GetCartLoading());
     log('loading');
@@ -56,16 +55,23 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  //======================= counter ==============
-  int quantity  = 1 ;
-  onIncrement(int quantity) {
-    quantity++;
-    log(quantity.toString());
+  //========================= get product cart =========
+  emitDeleteProductsCartStates( { required String itemtId}) async {
+    log('loading');
+    ApiResult response = await cartRepo.deleteCartProducts(itemId: itemtId );
+    response.when(
+      success: (msg) {
+        log('item $msg');
+        emit(DelCartSuccess());
+      },
+      failure: (err) {
+        log('Error: $err');
+        emit(DelCartFailure());
+      },
+    );
   }
 
-  onDecrement(int quantity) {
-    quantity >= 1 ? quantity-- : quantity;
-    log(quantity.toString());
 
-  }
+
+
 }

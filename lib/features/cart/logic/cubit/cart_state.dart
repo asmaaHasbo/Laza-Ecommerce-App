@@ -31,3 +31,12 @@ class GetCartFailure extends CartState {
   String errMsg;
   GetCartFailure({required this.errMsg});
 }
+
+//====================== delete product ===========
+class DelCartSuccess extends CartState {
+  DelCartSuccess();
+}
+
+class DelCartFailure extends CartState {
+  DelCartFailure();
+}

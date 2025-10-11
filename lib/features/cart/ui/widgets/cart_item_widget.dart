@@ -9,12 +9,11 @@ import 'product_details_widget.dart';
 class CartItemWidget extends StatelessWidget {
   final CartItemModel cartItemModel;
   final Function(String) onRemove;
- 
+
   const CartItemWidget({
     super.key,
     required this.cartItemModel,
     required this.onRemove,
-   
   });
 
   @override
@@ -49,14 +48,11 @@ class CartItemWidget extends StatelessWidget {
 
               //================== counter =========
               Row(
+
                 children: [
-                  CartCounter(
-                    quantity: cartItemModel.quantity!,
-                    // onIncrement: ,
-                    // onDecrement: ,
-                  ),
-                  SizedBox(width: 60.h),
-                  DeleteButton(onTap: () => onRemove(cartItemModel.itemId!)),
+                  CartCounter(quantity: cartItemModel.quantity!),
+                  SizedBox(width: 70.h),
+                  DeleteButton(itemtId: cartItemModel.itemId!),
                 ],
               ),
             ],

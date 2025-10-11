@@ -20,4 +20,11 @@ abstract class CartApiService {
   //======================= get Product to cart ===============
   @GET(ApiEndPontis.getCartProduct)
   Future<CartProductsModel> getCartProducts();
+
+  //======================= del Product to cart ===============
+  @DELETE(ApiEndPontis.deleteProduct)
+  Future deleteProduct(
+    @Path('id') String productId, // هنا بنحدد ان الـ id هيتحط في الـ URL
+    @Body() Map<String, dynamic> body,
+  );
 }

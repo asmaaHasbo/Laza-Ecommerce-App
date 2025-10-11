@@ -27,7 +27,7 @@ class _CartScreenState extends State<CartScreen> {
         backgroundColor: Colors.transparent,
         title: const Center(child: Text('Cart')),
       ),
-      body: const CartContent(),
+      body: SafeArea(child: const CartContent()),
     );
   }
 }
@@ -52,4 +52,3 @@ class CartContent extends StatelessWidget {
     );
   }
 }
-

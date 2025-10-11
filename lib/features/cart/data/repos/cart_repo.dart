@@ -27,6 +27,8 @@ class CartRepo {
     }
   }
 
+  //========================== get item from cart ==========
+
   Future<ApiResult<CartProductsModel>> getCartProducts(
   ) async {
     try {
@@ -41,5 +43,20 @@ class CartRepo {
     }
   }
 
+  //========================== delete item from cart ==========
+
+ Future<ApiResult> deleteCartProducts( {required String itemId} ) async {
+    try {
+      await _cartApiService.deleteProduct(itemId , { 'id' : itemId });
+      log("item deleted ");
+      return ApiResult.success('item deleted successfuly ');
+    } on DioException catch (e) {
+      log('DioException caught:error is cant deleted ${e.toString()} ');
+      return ApiResult.failure('error is cant deleted');
+    } catch (e) {
+      log(' error is cant deleted ${e.toString()}');
+      return ApiResult.failure('يااااااااااااااني error is cant deleted');
+    }
+  }
 
 }

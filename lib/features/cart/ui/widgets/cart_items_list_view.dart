@@ -5,13 +5,11 @@ import 'package:laza_ecommerce_app/features/cart/ui/widgets/cart_item_widget.dar
 
 class CartItemsList extends StatelessWidget {
   final List<CartItemModel> cartItems;
-  // final void Function(String, int) onQuantityChanged;
   final void Function(String) onRemove;
 
   const CartItemsList({
     super.key,
     required this.cartItems,
-    // required this.onQuantityChanged,
     required this.onRemove,
   });
 
@@ -26,7 +24,7 @@ class CartItemsList extends StatelessWidget {
             itemBuilder: (context, index) {
               return CartItemWidget(
                 cartItemModel: cartItems[index],
-                
+
                 onRemove: onRemove,
               );
             },
