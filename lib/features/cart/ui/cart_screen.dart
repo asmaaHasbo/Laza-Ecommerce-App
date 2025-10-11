@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laza_ecommerce_app/features/cart/logic/cubit/cart_cubit.dart';
 import 'package:laza_ecommerce_app/features/cart/ui/widgets/cart_items_on_success.dart';
 
-// Main CartScreen widget
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 

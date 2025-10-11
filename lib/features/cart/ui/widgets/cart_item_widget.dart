@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laza_ecommerce_app/features/cart/data/models/cart_products_model/cart_item.dart';
-import 'package:laza_ecommerce_app/features/cart/ui/widgets/add_and_minus_btns.dart';
+import 'package:laza_ecommerce_app/features/cart/ui/widgets/counter.dart';
 import 'package:laza_ecommerce_app/features/cart/ui/widgets/delete_btn.dart';
 import 'product_image_widget.dart';
 import 'product_details_widget.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartItemModel cartItemModel;
-  final Function(String, int) onQuantityChanged;
   final Function(String) onRemove;
-
+ 
   const CartItemWidget({
     super.key,
     required this.cartItemModel,
-    required this.onQuantityChanged,
     required this.onRemove,
+   
   });
 
   @override
@@ -48,21 +47,15 @@ class CartItemWidget extends StatelessWidget {
               ProductDetailsWidget(cartItem: cartItemModel),
               SizedBox(height: 8.h),
 
-              //================== add and minus =========
+              //================== counter =========
               Row(
                 children: [
-                  AddAndMinusBtns(
+                  CartCounter(
                     quantity: cartItemModel.quantity!,
-                    onIncrement: () => onQuantityChanged(
-                      cartItemModel.itemId!,
-                      cartItemModel.quantity! + 1,
-                    ),
-                    onDecrement: () => onQuantityChanged(
-                      cartItemModel.itemId!,
-                      cartItemModel.quantity! - 1,
-                    ),
+                    // onIncrement: ,
+                    // onDecrement: ,
                   ),
-                  SizedBox(width: 50.h),
+                  SizedBox(width: 60.h),
                   DeleteButton(onTap: () => onRemove(cartItemModel.itemId!)),
                 ],
               ),
