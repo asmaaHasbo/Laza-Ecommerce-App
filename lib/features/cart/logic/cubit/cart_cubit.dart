@@ -16,19 +16,18 @@ class CartCubit extends Cubit<CartState> {
   CartCubit(this.cartRepo) : super(CartInitial());
 
   //===================== add product to cart
-  emitAddProductsToCartStates() async {
+  emitAddProductsToCartStates({required String productId}) async {
     emit(AddCartLoading());
     log('loading');
+    log('function add $productId');
+
     ApiResult<AddCartResponseModel> response = await cartRepo.addItemToCart(
-      AddCartRequestModel(
-        productId: "18a909d7-91ae-4d71-a06b-de4bbe5a2c5b",
-        quantity: 1,
-      ),
+      AddCartRequestModel(productId: productId, quantity: 1),
     );
 
     response.when(
       success: (responseModel) {
-        log('add carrt item id is ${responseModel.id} ');
+        log('add carrt item id is ${responseModel.productId} ');
         emit(AddCartSuccess(addCartResponseModel: responseModel));
       },
       failure: (err) {

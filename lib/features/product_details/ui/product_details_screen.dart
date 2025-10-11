@@ -34,7 +34,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    log('from product detaiel  ${widget.product.name}');
+    log('from product detaiel product id ${widget.product.id}');
     return Scaffold(
       backgroundColor: const Color(0xFFF8F8F8),
       body: Column(
@@ -113,7 +113,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
             ),
           ),
-          AddToCartButton(),
+          AddToCartButton(productId: widget.product.id!),
         ],
       ),
     );
