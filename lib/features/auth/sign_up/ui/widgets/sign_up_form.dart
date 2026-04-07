@@ -53,7 +53,19 @@ class SignUpForm extends StatelessWidget {
               return null;
             },
           ),
-
+          //====================== phone ================
+          CustomTextField(
+            lableText: 'Phone',
+            hintText: 'Phone number',
+            controller: signUpCubit.phoneController,
+            validator: (val) {
+              if (val.isStringNullOrEmpty()) {
+                return 'phone is requried';
+              }
+              return null;
+            },
+          ),
+          
           //====================== password ================
           CustomTextField(
             lableText: 'Password',
@@ -62,6 +74,22 @@ class SignUpForm extends StatelessWidget {
             validator: (val) {
               if (val.isStringNullOrEmpty()) {
                 return 'password is requried';
+              }
+              return null;
+            },
+          ),
+
+          //====================== confirm password ================
+          CustomTextField(
+            lableText: 'Confirm Password',
+            hintText: 'Confirm password',
+            controller: signUpCubit.confirmPasswordController,
+            validator: (val) {
+              if (val.isStringNullOrEmpty()) {
+                return 'confirm password is requried';
+              }
+              if (val != signUpCubit.passwordController.text) {
+                return 'passwords do not match';
               }
               return null;
             },

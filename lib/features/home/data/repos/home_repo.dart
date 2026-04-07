@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
+import 'package:laza_ecommerce_app/core/error/api_error_handler.dart';
 import 'package:laza_ecommerce_app/core/networking/api_result.dart';
 import 'package:laza_ecommerce_app/features/home/data/api/home_api_service.dart';
 import 'package:laza_ecommerce_app/features/home/data/models/category_model/categories_model.dart';
@@ -16,11 +16,10 @@ class HomeRepo {
     try {
       final response = await _homeApiService.getCategories();
       return ApiResult.success(response);
-    } on DioException catch (e) {
-      log('DioException caught: ${e.error.toString()}');
-      return ApiResult.failure(e.error.toString());
     } catch (e) {
-      return ApiResult.failure('يااااااااااااااني');
+      log('Get categories error: ${e.toString()}');
+      final exception = ApiErrorHandler.handle(e);
+      return ApiResult.failure(exception.message);
     }
   }
 
@@ -31,11 +30,10 @@ class HomeRepo {
       final response = await _homeApiService.getProducts(productResquestModel);
       log("response from repo is ${response.items?.length} ");
       return ApiResult.success(response);
-    } on DioException catch (e) {
-      log('DioException caught: ${e.error.toString()}');
-      return ApiResult.failure(e.error.toString());
     } catch (e) {
-      return ApiResult.failure('يااااااااااااااني error is : ${e.toString}');
+      log('Get products error: ${e.toString()}');
+      final exception = ApiErrorHandler.handle(e);
+      return ApiResult.failure(exception.message);
     }
   }
 }

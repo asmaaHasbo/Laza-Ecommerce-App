@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:laza_ecommerce_app/core/helper/extension.dart';
+import 'package:laza_ecommerce_app/core/routing/routes.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/login_bloc_listener.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/login_btn.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/login_form.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/term_and_condition.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/welcome_text.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/ui/widgets/rememper_me_row.dart';
+import 'package:laza_ecommerce_app/features/get_started/widgets/already_have_account_row.dart';
+import 'package:laza_ecommerce_app/features/get_started/widgets/social_media_btns.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -29,6 +33,20 @@ class LoginScreen extends StatelessWidget {
                     LoginForm(),
 
                     RememperMeRow(),
+
+                    SizedBox(height: 20.h),
+
+                    SocialMediaBtns(),
+
+                    SizedBox(height: 20.h),
+
+                    AlreadyHaveAccountRow(
+                      questionText: "Don't have an account? ",
+                      actionText: 'Sign Up',
+                      onTap: () {
+                        context.pushNamed(Routes.signUpScreen);
+                      },
+                    ),
                   ],
                 ),
               ),

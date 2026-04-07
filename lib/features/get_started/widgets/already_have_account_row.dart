@@ -3,7 +3,16 @@ import 'package:laza_ecommerce_app/core/themes/app_colors.dart';
 import 'package:laza_ecommerce_app/core/themes/app_styles.dart';
 
 class AlreadyHaveAccountRow extends StatelessWidget {
-  const AlreadyHaveAccountRow({super.key});
+  const AlreadyHaveAccountRow({
+    super.key,
+    required this.questionText,
+    required this.actionText,
+    required this.onTap,
+  });
+
+  final String questionText;
+  final String actionText;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +20,13 @@ class AlreadyHaveAccountRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Already have an account? ',
+          questionText,
           style: AppTextStyles.font15W400lightGray,
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: onTap,
           child: Text(
-            'Signin',
+            actionText,
             style: AppTextStyles.font15W400lightGray.copyWith(
               color: AppColors.darkBlack,
             ),

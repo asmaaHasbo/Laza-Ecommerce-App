@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:laza_ecommerce_app/core/networking/token_storage.dart';
 import 'package:laza_ecommerce_app/core/networking/api_result.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/data/models/sign_up_request_model.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/data/repo/sign_up_repo.dart';
@@ -15,6 +16,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   emitSignUpState() async {
     log('LOADING');
@@ -25,13 +28,21 @@ class SignUpCubit extends Cubit<SignUpState> {
         lastName: lastNameController.text,
         email: emailController.text,
         password: passwordController.text,
+        phone: phoneController.text,
+        rePassword: confirmPasswordController.text,
       ),
     );
 
     result.when(
-      success: (data) {
+      success: (data) async {
         log('SignUpSuccess state');
-
+        // حفظ الـ tokens بعد التسجيل الناجح
+        if (data.accessToken != null && data.accessToken!.isNotEmpty) {
+          await TokenStorage.saveToken(data.accessToken!);
+          if (data.refreshToken != null && data.refreshToken!.isNotEmpty) {
+            await TokenStorage.saveRefreshToken(data.refreshToken!);
+          }
+        }
         emit(SignUpSuccess(data));
       },
       failure: (e) {

@@ -6,6 +6,7 @@ import 'package:laza_ecommerce_app/core/helper/extension.dart';
 import 'package:laza_ecommerce_app/core/routing/routes.dart';
 import 'package:laza_ecommerce_app/core/shared/setup_snack_bar_failure_state.dart';
 import 'package:laza_ecommerce_app/core/shared/setup_snack_bar_for_success_state.dart';
+import 'package:laza_ecommerce_app/core/shared/show_error_dialog.dart';
 import 'package:laza_ecommerce_app/core/themes/app_colors.dart';
 import 'package:laza_ecommerce_app/features/auth/login/logic/cubit/login_cubit.dart';
 
@@ -36,16 +37,16 @@ class LoginBlocListener extends StatelessWidget {
           context.pop(); // Close the loading dialog
           setupSnackBarForSuccessState(
             context,
-            'Account created successfully!',
+            'Login successful!',
           );
-          context.pushNamed(Routes.mainScreen);
+          context.pushReplacementNamed(Routes.mainScreen);
         }
 
         //=================== failure ===============
         if (state is LoginFailure) {
           context.pop(); // Close the loading dialog
           FocusScope.of(context).unfocus();
-          setupSnackbarForFailureState(context, state.errMsg);
+            setupSnackbarForFailureState(context, state.errMsg);
         }
       },
       child: const SizedBox.shrink(),

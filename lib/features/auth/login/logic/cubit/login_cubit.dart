@@ -2,8 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laza_ecommerce_app/core/helper/constant.dart';
-import 'package:laza_ecommerce_app/core/helper/shared_preferences.dart';
+import 'package:laza_ecommerce_app/core/networking/token_storage.dart';
 import 'package:laza_ecommerce_app/core/networking/api_result.dart';
 import 'package:laza_ecommerce_app/features/auth/login/data/models/login_resquest_model.dart';
 import 'package:laza_ecommerce_app/features/auth/login/data/repo/login_repo.dart';
@@ -30,7 +29,13 @@ class LoginCubit extends Cubit<LoginState> {
     result.when(
       success: (data) async {
         log('LoginSuccess state');
-        await saveUserToken(userToken: data.accessToken ?? '');
+        // حفظ الـ tokens بعد تسجيل الدخول الناجح
+        if (data.accessToken != null && data.accessToken!.isNotEmpty) {
+          await TokenStorage.saveToken(data.accessToken!);
+          if (data.refreshToken != null && data.refreshToken!.isNotEmpty) {
+            await TokenStorage.saveRefreshToken(data.refreshToken!);
+          }
+        }
         emit(LoginSuccess(data));
       },
       failure: (e) {
@@ -38,9 +43,5 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginFailure(errMsg: e));
       },
     );
-  }
-
-  saveUserToken({required String userToken}) async {
-    await SharedPrefHelper.setData(SharedPrefKeys.userToken, userToken);
   }
 }

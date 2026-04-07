@@ -38,14 +38,22 @@ class SignUpBlocListener extends StatelessWidget {
             context,
             'Account created successfully!',
           );
-          context.pushNamed(Routes.homeScreen);
+          context.pushReplacementNamed(Routes.mainScreen);
         }
 
         //=================== failure ===============
         if (state is SignUpFailure) {
           context.pop(); // Close the loading dialog
           FocusScope.of(context).unfocus();
-          setupSnackbarForFailureState(context, state.errMsg);
+            setupSnackbarForFailureState(context, state.errMsg);
+          
+          // // لو الرسالة طويلة (فيها أكتر من سطر)، استخدم Dialog
+          // if (state.errMsg.contains('\n')) {
+          //   showErrorDialog(context, state.errMsg);
+          // } else {
+          //   // لو الرسالة قصيرة، استخدم SnackBar
+          //   setupSnackbarForFailureState(context, state.errMsg);
+          // }
         }
       },
       child: const SizedBox.shrink(),

@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:dio/dio.dart';
+import 'package:laza_ecommerce_app/core/error/api_error_handler.dart';
 import 'package:laza_ecommerce_app/core/networking/api_result.dart';
 import 'package:laza_ecommerce_app/features/auth/login/data/api/login_service.dart';
 import 'package:laza_ecommerce_app/features/auth/login/data/models/login_response_model.dart';
@@ -15,11 +15,10 @@ class LoginRepo {
     try {
       final response = await loginService.loginRequest(loginRequestModel);
       return ApiResult.success(response);
-    } on DioException catch (e) {
-      log('DioException caught: ${e.error.toString()}');
-      return ApiResult.failure(e.error.toString());
     } catch (e) {
-      return ApiResult.failure('يااااااااااااااني');
+      log('Login error: ${e.toString()}');
+      final exception = ApiErrorHandler.handle(e);
+      return ApiResult.failure(exception.message);
     }
   }
 }

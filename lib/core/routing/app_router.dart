@@ -10,15 +10,19 @@ import 'package:laza_ecommerce_app/features/get_started/get_started_screen.dart'
 import 'package:laza_ecommerce_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:laza_ecommerce_app/features/home/ui/main_screen.dart';
 import 'package:laza_ecommerce_app/features/onboarding/onboarding_screen.dart';
+import 'package:laza_ecommerce_app/features/splash/splash_screen.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+
       case Routes.onboardingScreen:
-        return MaterialPageRoute(builder: (_) => OnboardingScreen());
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 
       case Routes.getStartedScreen:
-        return MaterialPageRoute(builder: (_) => GetStartedScreen());
+        return MaterialPageRoute(builder: (_) => const GetStartedScreen());
 
       case Routes.signUpScreen:
         return MaterialPageRoute(

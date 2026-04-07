@@ -22,7 +22,7 @@ class LazaApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.mainScreen,
+        initialRoute: Routes.splashScreen,
         // home: ProductDetailsScreen(),
         onGenerateRoute: appRouter.generateRoute,
         // home:,

@@ -1,7 +1,7 @@
 class ApiEndPontis {
-  static const String baseUrl = 'https://accessories-eshop.runasp.net/api/';
-  static const String signUp = 'auth/register';
-  static const String login = 'auth/login';
+  static const String baseUrl = 'https://ecommerce.routemisr.com/api/v1/';
+  static const String signUp = 'auth/signup';
+  static const String login = 'auth/signinauth/signin';
   static const String categories = 'categories';
   static const String products = 'products';
   static const String addProductToCart = 'cart/items';

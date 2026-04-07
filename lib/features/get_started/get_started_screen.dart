@@ -31,7 +31,13 @@ class GetStartedScreen extends StatelessWidget {
 
             Spacer(),
 
-            AlreadyHaveAccountRow(),
+            AlreadyHaveAccountRow(
+              questionText: 'Already have an account? ',
+              actionText: 'Login',
+              onTap: () {
+                context.pushNamed(Routes.loginScreen);
+              },
+            ),
 
             SizedBox(height: 10.h),
 

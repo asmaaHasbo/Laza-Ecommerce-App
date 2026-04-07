@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:dio/dio.dart';
+import 'package:laza_ecommerce_app/core/error/api_error_handler.dart';
 import 'package:laza_ecommerce_app/core/networking/api_result.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/data/api/sign_up_service.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/data/models/sign_up_request_model.dart';
@@ -14,11 +14,10 @@ class SignUpRepo {
     try {
       final response = await signUpService.signUpRequest(signUpRequestModel);
       return ApiResult.success(response);
-    } on DioException catch (e) {
-      log('DioException caught: ${e.error.toString()}');
-      return ApiResult.failure(e.error.toString());
     } catch (e) {
-      return ApiResult.failure('يااااااااااااااني');
+      log('SignUp error: ${e.toString()}');
+      final exception = ApiErrorHandler.handle(e);
+      return ApiResult.failure(exception.message);
     }
   }
 }
