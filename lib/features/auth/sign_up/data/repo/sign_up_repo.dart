@@ -5,7 +5,7 @@ import 'package:laza_ecommerce_app/features/auth/sign_up/data/api/sign_up_servic
 import 'package:laza_ecommerce_app/features/auth/sign_up/data/models/sign_up_request_model.dart';
 
 class SignUpRepo {
-  final SignUpService signUpService;
+  final SignUpServices signUpService;
   SignUpRepo(this.signUpService);
 
   Future<ApiResult> signUpRepoFunction(

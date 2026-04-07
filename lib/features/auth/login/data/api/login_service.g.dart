@@ -12,7 +12,7 @@ part of 'login_service.dart';
 
 class _LoginService implements LoginService {
   _LoginService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://accessories-eshop.runasp.net/api/';
+    baseUrl ??= 'https://ecommerce.routemisr.com/api/v1/';
   }
 
   final Dio _dio;

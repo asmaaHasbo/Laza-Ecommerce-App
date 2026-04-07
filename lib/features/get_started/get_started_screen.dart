@@ -47,6 +47,8 @@ class GetStartedScreen extends StatelessWidget {
                 context.pushNamed(Routes.signUpScreen);
               },
             ),
+
+            SizedBox(height: 20.h),
           ],
         ),
       ),

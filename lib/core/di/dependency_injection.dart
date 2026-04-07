@@ -31,7 +31,7 @@ Future<void> setupGetIt() async {
   //cupit وكذلك مع ال  api service  عاوزه  login repo conctructor  لان ال
 
   //==================== sign up ====================
-  getIt.registerLazySingleton<SignUpService>(() => SignUpService(dio));
+  getIt.registerLazySingleton<SignUpServices>(() => SignUpServices(dio));
   getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 

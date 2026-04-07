@@ -8,7 +8,6 @@ import 'package:laza_ecommerce_app/features/auth/sign_up/ui/widgets/sign_up_bloc
 import 'package:laza_ecommerce_app/features/auth/sign_up/ui/widgets/sign_up_btn.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/ui/widgets/sign_up_form.dart';
 import 'package:laza_ecommerce_app/features/get_started/widgets/already_have_account_row.dart';
-import 'package:laza_ecommerce_app/features/get_started/widgets/social_media_btns.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -20,51 +19,43 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.only(bottom: 80.h), // مساحة للـ button
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Sign Up',
-                      style: AppTextStyles.font25W600darkBlack.copyWith(
-                        fontSize: 28.sp,
-                      ),
-                    ),
-
-                    SizedBox(height: 30.h),
-
-                    SignUpForm(formKey: formKey),
-
-                    RememperMeRow(),
-
-                    SizedBox(height: 20.h),
-
-                    SocialMediaBtns(),
-
-                    SizedBox(height: 20.h),
-
-                    AlreadyHaveAccountRow(
-                      questionText: 'Already have an account? ',
-                      actionText: 'Signin',
-                      onTap: () {
-                        context.pushNamed(Routes.loginScreen);
-                      },
-                    ),
-
-                    SizedBox(height: 30.h),
-                  ],
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 20.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Sign Up',
+                style: AppTextStyles.font25W600darkBlack.copyWith(
+                  fontSize: 28.sp,
                 ),
               ),
-            ),
 
-            // الـ button ثابت تحت
-            SignUpBtn(formKey: formKey),
-            SignUpBlocListener(),
-          ],
+              SizedBox(height: 30.h),
+
+              SignUpForm(formKey: formKey),
+
+              RememperMeRow(),
+
+              SizedBox(height: 20.h),
+
+              AlreadyHaveAccountRow(
+                questionText: 'Already have an account? ',
+                actionText: 'Signin',
+                onTap: () {
+                  context.pushNamed(Routes.loginScreen);
+                },
+              ),
+
+              SizedBox(height: 30.h),
+
+              SignUpBtn(formKey: formKey),
+
+              SizedBox(height: 20.h),
+
+              SignUpBlocListener(),
+            ],
+          ),
         ),
       ),
     );

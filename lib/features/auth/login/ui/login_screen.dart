@@ -9,7 +9,6 @@ import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/term_and_condi
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/welcome_text.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/ui/widgets/rememper_me_row.dart';
 import 'package:laza_ecommerce_app/features/get_started/widgets/already_have_account_row.dart';
-import 'package:laza_ecommerce_app/features/get_started/widgets/social_media_btns.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -19,47 +18,40 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    WelcomeText(),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 20.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              WelcomeText(),
 
-                    SizedBox(height: 100.h),
+              SizedBox(height: 100.h),
 
-                    LoginForm(),
+              LoginForm(),
 
-                    RememperMeRow(),
+              RememperMeRow(),
 
-                    SizedBox(height: 20.h),
+              SizedBox(height: 50.h),
 
-                    SocialMediaBtns(),
-
-                    SizedBox(height: 20.h),
-
-                    AlreadyHaveAccountRow(
-                      questionText: "Don't have an account? ",
-                      actionText: 'Sign Up',
-                      onTap: () {
-                        context.pushNamed(Routes.signUpScreen);
-                      },
-                    ),
-                  ],
-                ),
+              AlreadyHaveAccountRow(
+                questionText: "Don't have an account? ",
+                actionText: 'Sign Up',
+                onTap: () {
+                  context.pushNamed(Routes.signUpScreen);
+                },
               ),
-            ),
 
-            TermAndCondition(),
+              SizedBox(height: 20.h),
 
-            SizedBox(height: 30.h),
+              TermAndCondition(),
 
-            LoginBtn(),
+              SizedBox(height: 30.h),
 
-            LoginBlocListener(),
-          ],
+              LoginBtn(),
+
+              LoginBlocListener(),
+            ],
+          ),
         ),
       ),
     );

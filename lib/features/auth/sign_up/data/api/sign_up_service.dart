@@ -7,9 +7,13 @@ import 'package:retrofit/http.dart';
 part 'sign_up_service.g.dart';
 
 @RestApi(baseUrl: ApiEndPontis.baseUrl)
-abstract class SignUpService {
-  factory SignUpService(Dio dio) = _SignUpService;
+abstract class SignUpServices {
+  factory SignUpServices(Dio dio) = _SignUpServices;
 
   @POST(ApiEndPontis.signUp)
-  Future<SignUpResponseModel> signUpRequest(@Body() SignUpRequestModel signUpRequestModel);
+  Future<SignUpResponseModel> signUpRequest(
+    @Body() SignUpRequestModel signUpRequestModel,
+  );
 }
+
+

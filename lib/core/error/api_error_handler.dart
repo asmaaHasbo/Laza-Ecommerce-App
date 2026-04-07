@@ -155,6 +155,20 @@ class ApiErrorHandler {
     if (data['errors'] != null && data['errors'] is Map) {
       final errors = data['errors'] as Map<String, dynamic>;
 
+      // تحقق لو الـ errors فيه msg (express-validator format)
+      // { "errors": { "msg": "must be at least 6 chars", "param": "password" } }
+      if (errors.containsKey('msg') && errors['msg'] is String) {
+        final msg = errors['msg'] as String;
+        final param = errors['param'];
+        
+        // لو فيه param، ضيفه قبل الرسالة
+        if (param != null && param is String && param.isNotEmpty) {
+          return '$param: $msg';
+        }
+        
+        return msg;
+      }
+
       // جمع كل الأخطاء في List
       final errorMessages = <String>[];
 
@@ -181,12 +195,38 @@ class ApiErrorHandler {
     //     "كلمة المرور قصيرة"
     //   ]
     // }
+    // أو
+    // {
+    //   "errors": [
+    //     { "msg": "must be at least 6 chars", "param": "password" }
+    //   ]
+    // }
     if (data['errors'] != null && data['errors'] is List) {
       final errors = data['errors'] as List;
 
       if (errors.isNotEmpty) {
-        // حول كل عنصر لـ String وارجعهم
-        return errors.map((e) => e.toString()).join('\n');
+        final errorMessages = <String>[];
+        
+        for (var error in errors) {
+          if (error is String) {
+            errorMessages.add(error);
+          } else if (error is Map && error['msg'] != null) {
+            // express-validator format in array
+            final msg = error['msg'].toString();
+            final param = error['param'];
+            
+            // لو فيه param، ضيفه قبل الرسالة
+            if (param != null && param is String && param.isNotEmpty) {
+              errorMessages.add('$param: $msg');
+            } else {
+              errorMessages.add(msg);
+            }
+          } else {
+            errorMessages.add(error.toString());
+          }
+        }
+        
+        return errorMessages.join('\n');
       }
     }
 
@@ -199,7 +239,7 @@ class ApiErrorHandler {
     if (data['message'] != null && data['message'] is String) {
       final message = data['message'] as String;
       // لو الرسالة مش عامة، ارجعها
-      if (message.isNotEmpty && message != 'One or more errors occurred!') {
+      if (message.isNotEmpty && message != 'One or more errors occurred!' && message != 'fail') {
         return message;
       }
     }

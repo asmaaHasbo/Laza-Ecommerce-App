@@ -14,16 +14,19 @@ class ScreensBottomBtn extends StatelessWidget {
   final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    return CustomElevatedBtn(
-      width: double.infinity,
-      height: 75.h,
-      backgroundColor: AppColors.mainColor,
-      btnName: btnName,
-      raduis: 0.r,
-      textStyle: AppTextStyles.font17W600white.copyWith(
-        fontWeight: FontWeight.w500,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: CustomElevatedBtn(
+        width: double.infinity,
+        height: 56.h,
+        backgroundColor: AppColors.mainColor,
+        btnName: btnName,
+        raduis: 10.r,
+        textStyle: AppTextStyles.font17W600white.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        onPressed: onPressed,
       ),
-      onPressed: onPressed,
     );
   }
 }

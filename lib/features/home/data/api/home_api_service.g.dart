@@ -12,7 +12,7 @@ part of 'home_api_service.dart';
 
 class _HomeApiService implements HomeApiService {
   _HomeApiService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://accessories-eshop.runasp.net/api/';
+    baseUrl ??= 'https://ecommerce.routemisr.com/api/v1/';
   }
 
   final Dio _dio;

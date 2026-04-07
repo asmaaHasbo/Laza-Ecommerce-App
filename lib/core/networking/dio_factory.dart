@@ -96,7 +96,7 @@ class DioFactory {
     dio.interceptors.add(
       PrettyDioLogger(
         /// requestHeader: طباعة headers الـ request
-        requestHeader: true,
+        // requestHeader: true,
 
         /// requestBody: طباعة body الـ request
         requestBody: true,

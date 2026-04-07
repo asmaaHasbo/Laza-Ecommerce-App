@@ -14,10 +14,6 @@ class WelcomeText extends StatelessWidget {
           'Login ',
           style: AppTextStyles.font25W600darkBlack.copyWith(fontSize: 28.sp),
         ),
-        Text(
-          'Please enter your data to continue',
-          style: AppTextStyles.font14W500lightGray,
-        ),
       ],
     );
   }

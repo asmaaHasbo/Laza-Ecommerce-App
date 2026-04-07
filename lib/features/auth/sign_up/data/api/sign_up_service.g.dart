@@ -10,9 +10,9 @@ part of 'sign_up_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
-class _SignUpService implements SignUpService {
-  _SignUpService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://accessories-eshop.runasp.net/api/';
+class _SignUpServices implements SignUpServices {
+  _SignUpServices(this._dio, {this.baseUrl, this.errorLogger}) {
+    baseUrl ??= 'https://ecommerce.routemisr.com/api/v1/';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _SignUpService implements SignUpService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'auth/register',
+            'auth/signup',
             queryParameters: queryParameters,
             data: _data,
           )
