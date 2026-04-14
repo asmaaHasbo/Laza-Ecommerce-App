@@ -13,8 +13,8 @@ import 'package:laza_ecommerce_app/features/auth/sign_up/logic/cubit/sign_up_cub
 import 'package:laza_ecommerce_app/features/cart/data/api/cart_api_service.dart';
 import 'package:laza_ecommerce_app/features/cart/data/repos/cart_repo.dart';
 import 'package:laza_ecommerce_app/features/cart/logic/cubit/cart_cubit.dart';
-import 'package:laza_ecommerce_app/features/home/data/api/home_api_service.dart';
-import 'package:laza_ecommerce_app/features/home/data/repos/home_repo.dart';
+import 'package:laza_ecommerce_app/features/home/data/datasources/home_remote.dart';
+import 'package:laza_ecommerce_app/features/home/data/repositories/home_repo.dart';
 import 'package:laza_ecommerce_app/features/home/logic/cubit/home_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -37,7 +37,7 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<ForgetPasswordCubit>(() => ForgetPasswordCubit(getIt()));
 
   //=============== home ==================
-  getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
+  getIt.registerLazySingleton<HomeRemote>(() => HomeRemote());
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
 
