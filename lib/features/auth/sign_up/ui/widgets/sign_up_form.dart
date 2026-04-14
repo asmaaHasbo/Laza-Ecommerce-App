@@ -17,7 +17,7 @@ class SignUpForm extends StatelessWidget {
         children: [
           //================== FirstName ================
           CustomTextField(
-            lableText: 'FirstName',
+            // lableText: 'FirstName',
             hintText: 'First Name',
             controller: signUpCubit.firstNameController,
             validator: (val) {
@@ -30,7 +30,7 @@ class SignUpForm extends StatelessWidget {
 
           //================== LastName ================
           CustomTextField(
-            lableText: 'Last Name',
+            // lableText: 'Last Name',
             hintText: 'Last Name',
             controller: signUpCubit.lastNameController,
             validator: (val) {
@@ -43,7 +43,7 @@ class SignUpForm extends StatelessWidget {
 
           //====================== email ================
           CustomTextField(
-            lableText: 'Email Address',
+            // lableText: 'Email Address',
             hintText: 'Email',
             controller: signUpCubit.emailController,
             validator: (val) {
@@ -54,21 +54,21 @@ class SignUpForm extends StatelessWidget {
             },
           ),
           //====================== phone ================
-          CustomTextField(
-            lableText: 'Phone',
-            hintText: 'Phone number',
-            controller: signUpCubit.phoneController,
-            validator: (val) {
-              if (val.isStringNullOrEmpty()) {
-                return 'phone is requried';
-              }
-              return null;
-            },
-          ),
-          
+          // CustomTextField(
+          //   lableText: 'Phone',
+          //   hintText: 'Phone number',
+          //   controller: signUpCubit.phoneController,
+          //   validator: (val) {
+          //     if (val.isStringNullOrEmpty()) {
+          //       return 'phone is requried';
+          //     }
+          //     return null;
+          //   },
+          // ),
+
           //====================== password ================
           CustomTextField(
-            lableText: 'Password',
+            // lableText: 'Password',
             hintText: 'password',
             controller: signUpCubit.passwordController,
             validator: (val) {
@@ -81,7 +81,7 @@ class SignUpForm extends StatelessWidget {
 
           //====================== confirm password ================
           CustomTextField(
-            lableText: 'Confirm Password',
+            // lableText: 'Confirm Password',
             hintText: 'Confirm password',
             controller: signUpCubit.confirmPasswordController,
             validator: (val) {

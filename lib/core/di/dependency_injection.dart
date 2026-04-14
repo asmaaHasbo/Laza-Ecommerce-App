@@ -7,8 +7,8 @@ import 'package:laza_ecommerce_app/features/auth/forget_password/logic/cubit/for
 import 'package:laza_ecommerce_app/features/auth/login/data/datasources/login_remote.dart';
 import 'package:laza_ecommerce_app/features/auth/login/data/repositories/login_repo.dart';
 import 'package:laza_ecommerce_app/features/auth/login/logic/cubit/login_cubit.dart';
-import 'package:laza_ecommerce_app/features/auth/sign_up/data/api/sign_up_service.dart';
-import 'package:laza_ecommerce_app/features/auth/sign_up/data/repo/sign_up_repo.dart';
+import 'package:laza_ecommerce_app/features/auth/sign_up/data/datasources/sign_up_remote.dart';
+import 'package:laza_ecommerce_app/features/auth/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/logic/cubit/sign_up_cubit.dart';
 import 'package:laza_ecommerce_app/features/cart/data/api/cart_api_service.dart';
 import 'package:laza_ecommerce_app/features/cart/data/repos/cart_repo.dart';
@@ -27,7 +27,7 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
   //==================== sign up ====================
-  getIt.registerLazySingleton<SignUpServices>(() => SignUpServices(dio));
+  getIt.registerLazySingleton<SignUpRemote>(() => SignUpRemote());
   getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 
