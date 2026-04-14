@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:laza_ecommerce_app/core/networking/dio_factory.dart';
+import 'package:laza_ecommerce_app/features/auth/forget_password/data/datasources/forget_password_remote.dart';
+import 'package:laza_ecommerce_app/features/auth/forget_password/data/repositories/forget_password_repo.dart';
+import 'package:laza_ecommerce_app/features/auth/forget_password/logic/cubit/forget_password_cubit.dart';
 import 'package:laza_ecommerce_app/features/auth/login/data/api/login_service.dart';
 import 'package:laza_ecommerce_app/features/auth/login/data/repo/login_repo.dart';
 import 'package:laza_ecommerce_app/features/auth/login/logic/cubit/login_cubit.dart';
@@ -34,6 +37,11 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SignUpServices>(() => SignUpServices(dio));
   getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
+
+  //==================== forget password ====================
+  getIt.registerLazySingleton<ForgetPasswordRemote>(() => ForgetPasswordRemote());
+  getIt.registerLazySingleton<ForgetPasswordRepo>(() => ForgetPasswordRepo(getIt()));
+  getIt.registerFactory<ForgetPasswordCubit>(() => ForgetPasswordCubit(getIt()));
 
   //=============== home ==================
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
