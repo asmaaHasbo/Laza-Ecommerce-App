@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laza_ecommerce_app/core/helper/extension.dart';
@@ -16,8 +14,6 @@ class SignUpBlocListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
-        log('Listener received state: $state');
-
         //=================== loading ==============
         if (state is SignUpLoading) {
           // Hide keyboard when loading starts
@@ -45,15 +41,7 @@ class SignUpBlocListener extends StatelessWidget {
         if (state is SignUpFailure) {
           context.pop(); // Close the loading dialog
           FocusScope.of(context).unfocus();
-            setupSnackbarForFailureState(context, state.errMsg);
-          
-          // // لو الرسالة طويلة (فيها أكتر من سطر)، استخدم Dialog
-          // if (state.errMsg.contains('\n')) {
-          //   showErrorDialog(context, state.errMsg);
-          // } else {
-          //   // لو الرسالة قصيرة، استخدم SnackBar
-          //   setupSnackbarForFailureState(context, state.errMsg);
-          // }
+          setupSnackbarForFailureState(context, state.errMsg);
         }
       },
       child: const SizedBox.shrink(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laza_ecommerce_app/core/helper/extension.dart';
 import 'package:laza_ecommerce_app/core/routing/routes.dart';
+import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/forget_password_link.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/login_bloc_listener.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/login_btn.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/widgets/login_form.dart';
@@ -31,7 +32,9 @@ class LoginScreen extends StatelessWidget {
 
               RememperMeRow(),
 
-              SizedBox(height: 50.h),
+              ForgetPasswordLink(),
+
+              SizedBox(height: 30.h),
 
               AlreadyHaveAccountRow(
                 questionText: "Don't have an account? ",

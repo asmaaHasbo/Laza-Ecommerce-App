@@ -18,7 +18,7 @@ class LoginForm extends StatelessWidget {
         children: [
           //====================== email ================
           CustomTextField(
-            lableText: 'Email Address',
+            // lableText: 'Email Address',
             hintText: 'Email',
             controller: loginCubit.emailController,
             validator: (val) {
@@ -31,12 +31,12 @@ class LoginForm extends StatelessWidget {
 
           //====================== password ================
           CustomTextField(
-            lableText: 'Password',
+            // lableText: 'Password',
             hintText: 'password',
             controller: loginCubit.passwordController,
             validator: (val) {
               if (val.isStringNullOrEmpty()) {
-                return 'password is requried';
+                return 'password is requrid';
               }
               return null;
             },

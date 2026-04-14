@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laza_ecommerce_app/core/di/dependency_injection.dart';
 import 'package:laza_ecommerce_app/core/routing/routes.dart';
+import 'package:laza_ecommerce_app/features/auth/forget_password/logic/cubit/forget_password_cubit.dart';
+import 'package:laza_ecommerce_app/features/auth/forget_password/ui/forget_password_screen.dart';
+import 'package:laza_ecommerce_app/features/auth/forget_password/ui/otp_screen.dart';
 import 'package:laza_ecommerce_app/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:laza_ecommerce_app/features/auth/login/ui/login_screen.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/logic/cubit/sign_up_cubit.dart';
@@ -51,6 +54,20 @@ class AppRouter {
             },
             child: MainScreen(),
           ),
+        );
+
+      case Routes.forgetPasswordScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ForgetPasswordCubit(getIt()),
+            child: const ForgetPasswordScreen(),
+          ),
+        );
+
+      case Routes.otpScreen:
+        final email = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => OtpScreen(email: email),
         );
 
       // case Routes.productDetailsScreen:
