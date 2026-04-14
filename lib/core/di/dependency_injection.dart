@@ -4,8 +4,8 @@ import 'package:laza_ecommerce_app/core/networking/dio_factory.dart';
 import 'package:laza_ecommerce_app/features/auth/forget_password/data/datasources/forget_password_remote.dart';
 import 'package:laza_ecommerce_app/features/auth/forget_password/data/repositories/forget_password_repo.dart';
 import 'package:laza_ecommerce_app/features/auth/forget_password/logic/cubit/forget_password_cubit.dart';
-import 'package:laza_ecommerce_app/features/auth/login/data/api/login_service.dart';
-import 'package:laza_ecommerce_app/features/auth/login/data/repo/login_repo.dart';
+import 'package:laza_ecommerce_app/features/auth/login/data/datasources/login_remote.dart';
+import 'package:laza_ecommerce_app/features/auth/login/data/repositories/login_repo.dart';
 import 'package:laza_ecommerce_app/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/data/api/sign_up_service.dart';
 import 'package:laza_ecommerce_app/features/auth/sign_up/data/repo/sign_up_repo.dart';
@@ -22,16 +22,9 @@ final getIt = GetIt.instance;
 Future<void> setupGetIt() async {
   Dio dio = DioFactory.getDio();
   // ============ login ===============
-  getIt.registerLazySingleton<LoginService>(() => LoginService(dio));
-
-  // registerLazySingleton => دي عشان يعمل اوبجكت واحد واستدعيه في كل التبيق
+  getIt.registerLazySingleton<LoginRemote>(() => LoginRemote());
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-
-  //---registerFactory => logincupit دي عشان يعمل اوبجكت جديد في كل مره استدعي فيها ال
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
-
-  // api service  بتعود علي  signUpRepo اللي في القوسين بتوع ال  get it  ال
-  //cupit وكذلك مع ال  api service  عاوزه  login repo conctructor  لان ال
 
   //==================== sign up ====================
   getIt.registerLazySingleton<SignUpServices>(() => SignUpServices(dio));
